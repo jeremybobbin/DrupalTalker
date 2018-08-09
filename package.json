@@ -1,0 +1,9 @@
+{
+  "name": "DrupalServer",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
