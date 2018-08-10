@@ -1,4 +1,4 @@
-const axios = require('axios');
+const jeRequest = require('jeRequest');
 
 module.exports = class DrupalTalker {
     
