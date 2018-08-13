@@ -10,14 +10,12 @@ module.exports = class Request {
         this.method = method;
         this.url = new Url(url);
         this.header = header;
-        this.protocal = this.url.isSecure() ? https : http;
     }
 
     callback(response, resolve) {
         const chunks = [];
-        response.on('data', chunk => chunks.push(chunk));
-        response.on('end', () => resolve(Buffer.concat(chunks)));
-        response.on('error', (e) => reject(e));
+        response.on('data', chunk => console.log(chunk));
+        response.on('end', () => resolve(Buffer.concat(chunks).toString()));
     }
 
     execute() {
@@ -25,14 +23,15 @@ module.exports = class Request {
             hostname = this.url.getHostname(),
             path = this.url.getPath(),
             headers = this.header.toJson(),
-            options = {agent, method, hostname, path, headers};
+            options = { method, hostname, path, headers};
 
 
         return new Promise((resolve, reject) => {
             // this.protocol.request(options, (res) => this.callback(res, resolve))
             //     .on('error', (e) => reject(e));
-
-            Protocol()
+            console.log(options);
+            Protocol(options, this.url.isSecure(), (res) => this.callback(res, resolve))
+                .on('error', (e) => reject(e));;
         });
     }
 

@@ -1,6 +1,9 @@
-const jeRequest = require('./jeRequest');
+const DrupalServer = require('./DrupalServer');
 
-jeRequest.acceptType('json');
+const drup = new DrupalServer('https://www.freshpeeps.com/drupal/api/');
 
-jeRequest.get('http://api.twitter.com/1.1/direct_messages/events/list.json')
-    .then(r => console.log(r));
+drup.init()
+    .then(() => {
+        drup.logIn('jerGuy', 'Password100')
+            .then(r => console.log(r));
+    });

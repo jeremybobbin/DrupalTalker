@@ -1,6 +1,5 @@
 const Header = require('./Header');
 const Request = require('./Request');
-console.log(typeof Request);
 
 module.exports = class JeRequest {
     constructor(headers) {

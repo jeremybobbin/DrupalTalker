@@ -6,9 +6,9 @@ module.exports = class Url {
 
     parse(string) {
         let array = string.split('//');
-        if(array.length === 2) this.protocal = array.shift() === 'https:';
+        if(array.length === 2) this.protocol = Boolean(array.shift() === 'https:');
         array = array[0].split('/');
-        this.hostname = array.shift().split('.');
+        this.hostname = array.shift();
         this.path = array;
 
     }
@@ -18,11 +18,11 @@ module.exports = class Url {
     }
 
     getHostname() {
-        return this.hostname.join('.');
+        return this.hostname;
     }
 
     getPath() {
-        return this.path;
+        return '/' + this.path.join('/');
     }
 
     getUrl() {
